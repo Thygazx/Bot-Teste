@@ -46,7 +46,7 @@ app.MapGet("/horarios-livres", async (DateOnly data, int servicoId, AppDbContext
     // 3. se não achou, devolver "fechado"
     if(horario == null)
     {
-        return Results.NotFound("É nada");
+        return Results.NotFound("To te falando");
     }
 
     // 4. se achou, devolver a linha
