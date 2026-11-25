@@ -1,0 +1,8 @@
+POST http://localhost:5002/horarios
+Content-Type: application/json
+
+{
+    "DiaDaSemana": 6,
+    "Abertura": "08:00:00",
+    "Fechamento": "15:00:00"
+}
