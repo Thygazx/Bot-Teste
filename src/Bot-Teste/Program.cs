@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data Source=agendamento.db"));
 var app = builder.Build();
@@ -45,7 +46,7 @@ app.MapGet("/horarios-livres", async (DateOnly data, int servicoId, AppDbContext
     // 3. se não achou, devolver "fechado"
     if(horario == null)
     {
-        return Results.NotFound("Fora do horario de funcionamento Chefe!");
+        return Results.NotFound("É nada");
     }
 
     // 4. se achou, devolver a linha

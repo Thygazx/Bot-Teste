@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sgtpo\\OneDrive\\Documentos\\Bot-Teste\\src\\Bot-Teste\\Bot-Teste.csproj": {}
+    "C:\\Users\\sgtpo\\OneDrive\\Documentos\\GitHub\\Bot-Teste\\src\\Bot-Teste\\Bot-Teste.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sgtpo\\OneDrive\\Documentos\\Bot-Teste\\src\\Bot-Teste\\Bot-Teste.csproj": {
+    "C:\\Users\\sgtpo\\OneDrive\\Documentos\\GitHub\\Bot-Teste\\src\\Bot-Teste\\Bot-Teste.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sgtpo\\OneDrive\\Documentos\\Bot-Teste\\src\\Bot-Teste\\Bot-Teste.csproj",
+        "projectUniqueName": "C:\\Users\\sgtpo\\OneDrive\\Documentos\\GitHub\\Bot-Teste\\src\\Bot-Teste\\Bot-Teste.csproj",
         "projectName": "Bot-Teste",
-        "projectPath": "C:\\Users\\sgtpo\\OneDrive\\Documentos\\Bot-Teste\\src\\Bot-Teste\\Bot-Teste.csproj",
+        "projectPath": "C:\\Users\\sgtpo\\OneDrive\\Documentos\\GitHub\\Bot-Teste\\src\\Bot-Teste\\Bot-Teste.csproj",
         "packagesPath": "C:\\Users\\sgtpo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sgtpo\\OneDrive\\Documentos\\Bot-Teste\\src\\Bot-Teste\\obj\\",
+        "outputPath": "C:\\Users\\sgtpo\\OneDrive\\Documentos\\GitHub\\Bot-Teste\\src\\Bot-Teste\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
