@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mybkBFGbrQo=",
+  "dgSpecHash": "zIWEqO9jKL4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\sgtpo\\OneDrive\\Documentos\\Bot-Teste\\src\\Bot-Teste\\Bot-Teste.csproj",
+  "projectFilePath": "C:\\Users\\sgtpo\\OneDrive\\Documentos\\GitHub\\Bot-Teste\\src\\Bot-Teste\\Bot-Teste.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sgtpo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\sgtpo\\.nuget\\packages\\microsoft.build.framework\\18.0.2\\microsoft.build.framework.18.0.2.nupkg.sha512",
