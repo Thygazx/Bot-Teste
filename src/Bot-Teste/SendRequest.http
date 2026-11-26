@@ -1,8 +1,139 @@
-POST http://localhost:5002/horarios
+@baseUrl = http://localhost:5002
+
+### ---------- SERVIÇOS ----------
+
+GET {{baseUrl}}/servicos
+
+###
+POST {{baseUrl}}/servicos
 Content-Type: application/json
 
-{
-    "DiaDaSemana": 6,
-    "Abertura": "08:00:00",
-    "Fechamento": "15:00:00"
-}
+{ "nome": "Cirurgia", "tempoMin": 60 }
+
+###
+POST {{baseUrl}}/servicos
+Content-Type: application/json
+
+{ "nome": "Revisão", "tempoMin": 20 }
+
+###
+POST {{baseUrl}}/servicos
+Content-Type: application/json
+
+{ "nome": "Consulta", "tempoMin": 15 }
+
+### ---------- HORÁRIOS DE FUNCIONAMENTO (domingo fica sem linha = fechado) ----------
+# diaDaSemana: 1 = segunda ... 6 = sábado
+
+GET {{baseUrl}}/horarios
+
+###
+POST {{baseUrl}}/horarios
+Content-Type: application/json
+
+{ "diaDaSemana": 1, "abertura": "08:00:00", "fechamento": "17:00:00" }
+
+###
+POST {{baseUrl}}/horarios
+Content-Type: application/json
+
+{ "diaDaSemana": 2, "abertura": "08:00:00", "fechamento": "17:00:00" }
+
+###
+POST {{baseUrl}}/horarios
+Content-Type: application/json
+
+{ "diaDaSemana": 3, "abertura": "08:00:00", "fechamento": "17:00:00" }
+
+###
+POST {{baseUrl}}/horarios
+Content-Type: application/json
+
+{ "diaDaSemana": 4, "abertura": "08:00:00", "fechamento": "17:00:00" }
+
+###
+POST {{baseUrl}}/horarios
+Content-Type: application/json
+
+{ "diaDaSemana": 5, "abertura": "08:00:00", "fechamento": "17:00:00" }
+
+###
+POST {{baseUrl}}/horarios
+Content-Type: application/json
+
+{ "diaDaSemana": 6, "abertura": "08:00:00", "fechamento": "15:00:00" }
+
+### ---------- CLIENTES ----------
+
+GET {{baseUrl}}/clientes
+
+###
+POST {{baseUrl}}/clientes
+Content-Type: application/json
+
+{ "nome": "Maria", "telefone": "5511999990001" }
+
+###
+POST {{baseUrl}}/clientes
+Content-Type: application/json
+
+{ "nome": "João", "telefone": "5511999990002" }
+
+### ---------- AGENDAMENTOS ----------
+# Confira os Ids reais em GET /servicos e GET /clientes antes de enviar.
+# status: 0 = Confirmado (padrão), 1 = Cancelado, 2 = Reagendado
+
+GET {{baseUrl}}/agendamentos
+
+### Cirurgia (serviço 1) às 10:00, cliente 1, confirmada
+POST {{baseUrl}}/agendamentos
+Content-Type: application/json
+
+{ "idCliente": 1, "idServico": 1, "inicio": "2026-11-23T10:00:00" }
+
+### Consulta (serviço 3) às 14:30, cliente 2, confirmada
+POST {{baseUrl}}/agendamentos
+Content-Type: application/json
+
+{ "idCliente": 2, "idServico": 3, "inicio": "2026-11-23T14:30:00" }
+
+### Revisão (serviço 2) às 09:00, CANCELADA: não deve bloquear nada
+POST {{baseUrl}}/agendamentos
+Content-Type: application/json
+
+{ "idCliente": 1, "idServico": 2, "inicio": "2026-11-23T09:00:00", "status": 1 }
+
+### Deve dar 409: 10:30 colide com a cirurgia das 10:00 (que vai até 11:00)
+POST {{baseUrl}}/agendamentos
+Content-Type: application/json
+
+{ "idCliente": 2, "idServico": 3, "inicio": "2026-11-23T10:30:00" }
+
+### Deve dar 400: cliente que não existe
+POST {{baseUrl}}/agendamentos
+Content-Type: application/json
+
+{ "idCliente": 999, "idServico": 1, "inicio": "2026-11-23T11:00:00" }
+
+### Deve dar 400: domingo (clínica fechada)
+POST {{baseUrl}}/agendamentos
+Content-Type: application/json
+
+{ "idCliente": 1, "idServico": 3, "inicio": "2026-11-22T10:00:00" }
+
+### Cancelar o agendamento de Id 1 (libera o horário)
+PUT {{baseUrl}}/agendamentos/1/cancelar
+
+### ---------- HORÁRIOS LIVRES ----------
+
+### Segunda, Cirurgia: o 10:00 não deve aparecer (deve sobrar 8 encaixes)
+GET {{baseUrl}}/horarios-livres?data=2026-11-23&servicoId=1
+
+### Segunda, Consulta (15 min): 10:00 a 10:45 somem; 14:30 some
+GET {{baseUrl}}/horarios-livres?data=2026-11-23&servicoId=3
+
+### Sábado, Cirurgia (esperado: 7 encaixes)
+GET {{baseUrl}}/horarios-livres?data=2026-11-21&servicoId=1
+
+### Domingo (esperado: 404 fechado)
+GET {{baseUrl}}/horarios-livres?data=2026-11-22&servicoId=1
